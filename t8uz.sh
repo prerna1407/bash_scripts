@@ -1,4 +1,5 @@
 #!/bin/bash
+shopt -s xpg_echo
 if [ "$(id -u)" != "0" ]; then
 	   echo "This script must be run as root" 
 	      exit 1
@@ -53,13 +54,6 @@ echo "
     ServerName $name
     ServerAlias www.$name.com
 </VirtualHost>" >  $siteAvailabledomain
-echo "\n Virtual host created"
+echo "\nVirtual host created"
 
-#adding ip address and domain to /etc/hosts file
-echo "127.0.0.1 $name" | tee -a /etc/hosts > /dev/null
-
-a2ensite $name.conf
-systemctl reload apache2
-
-echo "Browse to http://$name"
 fi
