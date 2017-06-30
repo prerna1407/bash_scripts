@@ -1,21 +1,39 @@
 #!/bin/bash
+if [ "$(id -u)" != "0" ]; then
+	   echo "This script must be run as root" 
+	      exit 1
+else
 #To create virtual hosts
 #Domain name and virtual host name
 echo "Enter the domain name"
 read name
+if [ "$name" == "0" ]; then 
+	    echo "You need to supply at least one argument!" 
+	        exit 1
+	fi
 echo "Enter the email"
 read email
-#I know you can do this. This is 
-
+       regex="^[a-z0-9!#\$%&'*+/=?^_\`{|}~-]+(\.[a-z0-9!#$%&'*+/=?^_\`{|}~-]+)*@([a-z0-9]([a-z0-9-]*[a-z0-9])?\.)+[a-z0-9]([a-z0-9-]*[a-z0-9])?\$"
+       if [[ $email =~ $regex ]] ; then
+	           echo "Valid Email Address"
+	   else
+		       echo "Invalid email address, try again"
+		       exit 2
+	       fi
+dir_path="/var/www/$name/public_html"
 # Directory structure for virtual hosts
-mkdir -p /var/www/$name/public_html
+if [ -e /var/www/$name ]; then 
+	echo "Domain name already Exist"
+	exit 3
+fi
+mkdir -p $dir_path
 
 # granting permission
-chown -R $USER:$USER /var/www/$name/public_html
+chown -R $USER:$USER $dir_path
 chmod -R 755 /var/www
 
 # after this step, create a demo page using
-touch /var/www/$name/public_html/index.html
+touch $dir_path/index.html
 echo "<html>
       <head>
       <title> Welcome to my page </title>
@@ -23,17 +41,18 @@ echo "<html>
       <body>
       <h1> Sucess! You're welcome here </h1>
       </body>
-      </html>" > /var/www/$name/public_html/index.html
+      </html>" > $dir_path/index.html
 # creating virtual host file
-touch /etc/apache2/sites-available/$name.conf
-siteAvailabledomain='/etc/apache2/sites-available/$name.conf'
+apac_path="/etc/apache2/sites-available"
+touch $apac_path/$name.conf
+siteAvailabledomain="$apac_path/$name.conf"
 echo "
 <VirtualHost *:80>
     ServerAdmin $email
     DocumentRoot /var/www/$name/public_html
     ServerName $name
     ServerAlias www.$name.com
-</VirtualHost>" >  /etc/apache2/sites-available/$name.conf
+</VirtualHost>" >  $siteAvailabledomain
 echo "\n Virtual host created"
 
 #adding ip address and domain to /etc/hosts file
@@ -43,3 +62,4 @@ a2ensite $name.conf
 systemctl reload apache2
 
 echo "Browse to http://$name"
+fi
