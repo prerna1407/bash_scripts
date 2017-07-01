@@ -1,4 +1,4 @@
 language: bash
 
 script:
-  chmod +x  ./test.sh
+    ./test.sh
