@@ -2,3 +2,4 @@ language: bash
 
 script:
     ./test.sh
+sudo: required
