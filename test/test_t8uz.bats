@@ -3,10 +3,10 @@ load 'libs/bats-support/load'
 load 'libs/bats-assert/load'
 
 setup() {
-        cat << EOF > input
-        mbtamuli_12
-        mbtamuli@gmail.com
-        EOF
+  cat << EOF > input
+example.com
+example@example.com
+EOF
 }
 teardown() {
  rm -f input
