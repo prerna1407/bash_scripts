@@ -5,9 +5,5 @@ script:
 sudo: required
 
 notifications:
-        slack:
-            rooms:
-                  - edhacking:WlqyO2e3AZKEWq2GX2YZxyPT#devops
-                  - edhacking:WlqyO2e3AZKEWq2GX2YZxyPT#general
-
+        slack: edhacking:WlqyO2e3AZKEWq2GX2YZxyPT#devops
           on_success: always
