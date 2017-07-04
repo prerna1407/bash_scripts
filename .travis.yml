@@ -1,10 +1,7 @@
 language: bash
-
-script:
-    ./test.sh
+script: "./test.sh"
 sudo: required
-
 notifications:
-        slack: edhacking:VS70JWygsHub9xwZwLdRH53s#devops
-          on_success: always
-          on_failure: always
+  slack:
+    rooms:
+      secure: Lav3m55Xr2ihWN8UE85m0R8zbNjTTZeqjh/XPSJdrcjZf0sDt8yBuaFNW6tx1hmlGXtXmX1ekHyy1CmIP1ULfpNw4RcCiZE1gWFPOjrnw5MDTRRtGJRyT5s9dW+LiXdprjDkotjkBo+Iubx4hfnnyNa5pYSROTtpOoWHLMPLAiEzUDb/3RrflmRvxqBfKH5kZXuttcQHGNsaSz47CklVGBWfsfwI+V/NRCMHYYJPVo0SJGO9n/pF0kty9hdMihbaf5h01rdz3AYJsmDbLUWkMarRNl7rhUvXf2WXmmsTbUyg0Ppe2r5fWy0bhMAuwcsylBzmtmL9G+NbMUO7oWJGT81bP68zoKQoa3hk6UwpbhOCohRKUNEMB+IAmyhVabThFwiEa8Wl2JyZGGD4BAddE0pkYe9yXw5uRS40NMi1uutENhWyisiG+ANnLMhnkM/N6lC2niYKv8OAgWS+NGbdOVopGeKCnVQagZSzkXBJSMMg40+k3Qv8E8qQUmOlLYVTfwrgkBcN2oH9W+1ebZz2U9ShGh7auZB0p13M3XN+Si/OnNFNKeH9h2fOIdUqIs2mpUr25AD27i3m1R4ZZOHtqG5e4f/4lto80/GbDPzWa1OWlWx3KqraoLmscLYPoRnBMpzBjQbNiTMBbeftUh3KdvAEdYESMGV0nIcXpbdNf7Y=
