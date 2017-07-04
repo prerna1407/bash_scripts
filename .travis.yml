@@ -7,3 +7,4 @@ sudo: required
 notifications:
         slack: edhacking:WlqyO2e3AZKEWq2GX2YZxyPT#devops
           on_success: always
+          on_failure: always
