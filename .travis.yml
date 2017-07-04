@@ -5,6 +5,6 @@ script:
 sudo: required
 
 notifications:
-        slack: edhacking:WlqyO2e3AZKEWq2GX2YZxyPT#devops
+        slack: edhacking:VS70JWygsHub9xwZwLdRH53s#devops
           on_success: always
           on_failure: always
