@@ -8,8 +8,7 @@ then
 	echo $name | grep ^[a-zA-Z0-9][a-zA-Z0-9\-]*.*'[com|edu|in|com|\.in|org]$' >> /dev/null
 	if [ $? -eq 0 ];
 	then
-		grep -w $name /etc/hosts >> /dev/null
-		if [ $? -eq 0 ];
+		if [ -e /var/www/$name  ]
 		then
 				clear
 				echo "Domain name already exists"
