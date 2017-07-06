@@ -4,11 +4,11 @@ then
 	trydomain()
 	{
 	echo "Enter the domain name"
-	read domain
-	echo $domain | grep ^[a-zA-Z0-9][a-zA-Z0-9\-]*.*'[com|edu|in|com|\.in|org]$' >> /dev/null
+	read name
+	echo $name | grep ^[a-zA-Z0-9][a-zA-Z0-9\-]*.*'[com|edu|in|com|\.in|org]$' >> /dev/null
 	if [ $? -eq 0 ];
 	then
-		grep -w $domain /etc/hosts >> /dev/null
+		grep -w $name /etc/hosts >> /dev/null
 		if [ $? -eq 0 ];
 		then
 				clear
