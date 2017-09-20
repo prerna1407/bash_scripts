@@ -1,22 +1,22 @@
 if [ $(id -u) -eq 0 ]; then
 	nginx=$(which nginx)
-	php=$(which php)
-	mysql=$(which mysqld)
 
-	if [ $nginx = '/usr/sbin/nginx' ]; then
+	if [ $? -eq 0 ]; then
 		echo "Nginx is present"
-	else 
-		sudo apt-get install nginx
+	else
+		sudo apt-get install nginx -y
 	fi
-	if [ $php = '/usr/bin/php' ]; then
+	php=$(which php)
+	if [ $? -eq 0 ]; then
 		echo "Php is present"
-	else 
-		sudo apt-get install php7.0-fpm
+	else
+		sudo apt-get install php7.0-fpm -y
 	fi
-	if [ $mysql = '/usr/sbin/mysqld' ]; then
+	mysql=$(which mysqld)
+	if [ $? -eq 0 ]; then
 		echo "my sql is present"
 	else
-		sudo apt-get install mysql-server
+		sudo apt-get install mysql-server -y
 	fi
 	domain()
 	{
@@ -27,7 +27,7 @@ if [ $(id -u) -eq 0 ]; then
 		if [ -e /var/www/$name ]; then
 			clear
 			echo "Domain name already exists"
-			domain		
+			domain
 		fi
 	else
 	    clear
@@ -43,7 +43,7 @@ if [ $(id -u) -eq 0 ]; then
 	mkdir -p $dir_path
 	sudo chown -R $USER:$USER $dir_path
 	sudo chmod -R 755 /var/www
-	
+
 	touch $dir_path/index.html
 	echo "
 	<html>
@@ -54,7 +54,7 @@ if [ $(id -u) -eq 0 ]; then
 	<h1> The sserver blocckk is working </h1>
 	</body>
 	</html>" > $dir_path/index.html
-	
+
 	echo "
 	server
 	{
@@ -109,10 +109,10 @@ if [ $(id -u) -eq 0 ]; then
 		echo " Unzip already installed"
 	else
 		echo " Unzip will be used to intall wordpress but it isn't available."
-		sudo apt-get intall unzip
+		sudo apt-get install unzip
 	fi
 
-	unzip latest.zip 
+	unzip latest.zip
 else
 
 	echo " non- root user!"
